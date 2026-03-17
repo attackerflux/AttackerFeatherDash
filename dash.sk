@@ -1,0 +1,16 @@
+on right click:
+    if name of player's held item is "&e&lᴅᴀsʜᴇʀ": # change whats quoted("") to name your dasher
+    	set item cooldown of player's tool for player to 15 seconds
+        if {dashCooldown::%uuid of player%} is set:
+            set {_now} to now
+            set {_elapsed} to difference between {_now} and {dashCooldown::%uuid of player%}
+            set {_remaining} to 15 - round({_elapsed} / 1 second)
+            send "&aᴄᴏᴏʟᴅᴏᴡɴ: %{_remaining}% ѕᴇᴄᴏɴᴅѕ ʟᴇꜰᴛ!" to player # you can change text here for the cooldown message
+            stop
+
+        push player forward at speed 2 # turn this up or down for power, decimals are usable
+        play sound "entity.player.attack.sweep" with volume 1 and pitch 1 at player
+        execute console command "execute at %player% run particle sweep_attack ~ ~ ~ 1 2 1 0.2 10 normal"
+
+        set {dashCooldown::%uuid of player%} to now
+
